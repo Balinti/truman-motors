@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import ScrollReveal from "@/components/ScrollReveal";
 import HeroVideo from "@/components/HeroVideo";
 import ContactForm from "@/components/ContactForm";
+import { assetPath } from "@/lib/basePath";
 
 const specs = [
   { label: "Base Vehicle", value: "Ford F-450 Super Duty" },
@@ -101,7 +102,7 @@ export default function SignaturePage() {
                 <ScrollReveal key={i} delay={i * 0.1}>
                   <div className="relative aspect-[16/10] overflow-hidden group">
                     <Image
-                      src={src}
+                      src={assetPath(src)}
                       alt={`Signature gallery ${i + 1}`}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-1000"

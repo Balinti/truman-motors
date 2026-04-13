@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { assetPath } from "@/lib/basePath";
 
 interface ModelCardProps {
   name: string;
@@ -35,7 +36,7 @@ export default function ModelCard({
           {/* Image */}
           <div className="relative aspect-[16/10] overflow-hidden">
             <Image
-              src={image}
+              src={assetPath(image)}
               alt={name}
               fill
               className="object-cover transition-all duration-1000 group-hover:scale-105"
