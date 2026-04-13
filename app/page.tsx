@@ -104,18 +104,18 @@ export default function Home() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-[10px] md:text-[11px] tracking-[0.5em] uppercase text-gold mb-6 text-center"
+              className="text-xs md:text-sm tracking-[0.4em] uppercase text-gold mb-6 text-center"
             >
               Performance Upfitting
             </motion.p>
-            <h1 className="font-display text-5xl md:text-7xl lg:text-[6.5rem] font-medium tracking-tight text-center leading-[0.9]">
+            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight text-center leading-[0.9]">
               <StaggerText text="TRUMAN" />
               <br />
               <motion.span
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 0.4, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
-                className="text-3xl md:text-4xl lg:text-5xl tracking-[0.3em] font-light"
+                className="text-2xl md:text-3xl lg:text-4xl tracking-[0.3em] font-light"
               >
                 MOTORS
               </motion.span>
@@ -133,7 +133,7 @@ export default function Home() {
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               className="flex flex-col items-center gap-2"
             >
-              <span className="text-[9px] tracking-[0.3em] uppercase text-white/30">
+              <span className="text-xs tracking-[0.3em] uppercase text-white/30">
                 Scroll
               </span>
               <div className="w-px h-8 bg-gradient-to-b from-white/30 to-transparent" />
@@ -143,17 +143,16 @@ export default function Home() {
       </motion.section>
 
       {/* ━━━ Brand Intro ━━━ */}
-      <section id="about" className="relative py-32 md:py-48 overflow-hidden">
-        {/* Subtle diagonal line accent */}
-        <div className="absolute top-0 right-0 w-px h-64 bg-gradient-to-b from-gold/20 to-transparent transform translate-x-0" />
+      <section id="about" className="relative py-40 md:py-56 overflow-hidden">
+        <div className="absolute top-0 right-0 w-px h-64 bg-gradient-to-b from-gold/20 to-transparent" />
         <div className="absolute bottom-0 left-16 w-px h-48 bg-gradient-to-t from-gold/10 to-transparent" />
 
         <div className="max-w-6xl mx-auto px-8">
-          <div className="grid md:grid-cols-12 gap-12 md:gap-8 items-start">
+          <div className="grid md:grid-cols-12 gap-16 md:gap-12 items-start">
             {/* Left — label */}
             <div className="md:col-span-3">
               <ScrollReveal>
-                <p className="text-[10px] tracking-[0.4em] uppercase text-gold mb-4">
+                <p className="text-xs tracking-[0.3em] uppercase text-gold mb-4">
                   Our Philosophy
                 </p>
                 <hr className="hr-gold !mx-0" />
@@ -163,7 +162,7 @@ export default function Home() {
             {/* Right — big text */}
             <div className="md:col-span-9">
               <ScrollReveal delay={0.1}>
-                <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-medium leading-[1.05] mb-8">
+                <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium leading-[1.1] mb-10">
                   Built For
                   <br />
                   <span className="text-gradient">Anything.</span>
@@ -182,9 +181,8 @@ export default function Home() {
       </section>
 
       {/* ━━━ Stats ━━━ */}
-      <section className="relative py-24 md:py-32">
+      <section className="relative py-28 md:py-40">
         <div className="absolute inset-0 bg-charcoal" />
-        {/* Top border accent */}
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
         <div className="relative max-w-5xl mx-auto px-8">
@@ -195,12 +193,12 @@ export default function Home() {
       {/* ━━━ Full-bleed quote break ━━━ */}
       <ParallaxSection
         backgroundImage="/images/truck-hero.jpg"
-        className="py-48 md:py-64"
+        className="py-56 md:py-72"
         speed={0.4}
       >
         <div className="max-w-4xl mx-auto px-8 text-center">
           <ScrollReveal delay={0.1}>
-            <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-medium italic leading-tight text-cream">
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-medium italic leading-tight text-cream">
               "No compromises.<br />No shortcuts.<br />
               Just the best."
             </h2>
@@ -209,28 +207,28 @@ export default function Home() {
       </ParallaxSection>
 
       {/* ━━━ Models ━━━ */}
-      <section id="models" className="relative py-28 md:py-40 bg-background">
+      <section id="models" className="relative py-36 md:py-52 bg-background">
         <div className="max-w-6xl mx-auto px-8">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-16 gap-6">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-20 gap-6">
             <div>
               <ScrollReveal>
-                <p className="text-[10px] tracking-[0.4em] uppercase text-gold mb-4">
+                <p className="text-xs tracking-[0.3em] uppercase text-gold mb-4">
                   Our Models
                 </p>
               </ScrollReveal>
               <ScrollReveal delay={0.1}>
-                <h2 className="font-display text-3xl md:text-5xl font-medium">
+                <h2 className="font-display text-3xl md:text-4xl font-medium">
                   Choose Your Build
                 </h2>
               </ScrollReveal>
             </div>
             <ScrollReveal delay={0.2}>
-              <p className="text-sm text-muted max-w-xs">
+              <p className="text-sm md:text-base text-muted max-w-xs">
                 Two distinct platforms, one uncompromising standard.
               </p>
             </ScrollReveal>
           </div>
-          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
             <ModelCard
               name="The Shorty"
               tagline="Weekend Warrior"
@@ -254,40 +252,39 @@ export default function Home() {
       </section>
 
       {/* ━━━ Process / 4 Pillars ━━━ */}
-      <section id="process" className="relative py-28 md:py-40 bg-charcoal overflow-hidden">
-        {/* Background watermark */}
+      <section id="process" className="relative py-36 md:py-52 bg-charcoal overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[30vw] font-black text-white/[0.015] pointer-events-none select-none whitespace-nowrap">
           TRUMAN
         </div>
 
         <div className="relative max-w-6xl mx-auto px-8">
-          <div className="mb-20">
+          <div className="mb-24">
             <ScrollReveal>
-              <p className="text-[10px] tracking-[0.4em] uppercase text-gold mb-4">
+              <p className="text-xs tracking-[0.3em] uppercase text-gold mb-4">
                 Our Approach
               </p>
-              <hr className="hr-gold !mx-0 mb-8" />
+              <hr className="hr-gold !mx-0 mb-10" />
             </ScrollReveal>
             <ScrollReveal delay={0.1}>
-              <h2 className="font-display text-3xl md:text-5xl font-medium max-w-md">
+              <h2 className="font-display text-3xl md:text-4xl font-medium max-w-md">
                 The Truman Standard
               </h2>
             </ScrollReveal>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-5 lg:gap-6">
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
             {pillars.map((pillar, i) => (
               <ScrollReveal key={i} delay={i * 0.08}>
-                <div className="border border-white/8 rounded-sm p-8 md:p-10 group hover:border-gold/25 hover:bg-white/[0.02] transition-all duration-700 h-full">
+                <div className="border border-white/8 rounded-sm p-10 md:p-12 group hover:border-gold/25 hover:bg-white/[0.02] transition-all duration-700 h-full">
                   <div className="flex items-start gap-6">
-                    <span className="font-display text-4xl md:text-5xl text-gold/25 group-hover:text-gold/50 transition-colors duration-700 leading-none shrink-0">
+                    <span className="font-display text-3xl md:text-4xl text-gold/25 group-hover:text-gold/50 transition-colors duration-700 leading-none shrink-0">
                       {pillar.number}
                     </span>
                     <div>
-                      <h3 className="font-display text-lg md:text-xl font-semibold mb-3">
+                      <h3 className="font-display text-xl md:text-2xl font-semibold mb-4">
                         {pillar.title}
                       </h3>
-                      <p className="text-sm text-muted leading-relaxed">
+                      <p className="text-sm md:text-base text-muted leading-relaxed">
                         {pillar.description}
                       </p>
                     </div>
@@ -300,23 +297,23 @@ export default function Home() {
       </section>
 
       {/* ━━━ Contact ━━━ */}
-      <section id="contact" className="relative py-32 md:py-48 bg-background">
+      <section id="contact" className="relative py-40 md:py-56 bg-background">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
 
         <div className="max-w-4xl mx-auto px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-20">
             <ScrollReveal>
-              <p className="text-[10px] tracking-[0.4em] uppercase text-gold mb-4">
+              <p className="text-xs tracking-[0.3em] uppercase text-gold mb-4">
                 Get In Touch
               </p>
             </ScrollReveal>
             <ScrollReveal delay={0.1}>
-              <h2 className="font-display text-4xl md:text-6xl font-medium">
+              <h2 className="font-display text-4xl md:text-5xl font-medium">
                 Let's Talk
               </h2>
             </ScrollReveal>
             <ScrollReveal delay={0.2}>
-              <p className="text-muted mt-4 text-sm max-w-md mx-auto">
+              <p className="text-muted mt-6 text-base max-w-md mx-auto">
                 Speak with someone from our team about your next build.
               </p>
             </ScrollReveal>
@@ -326,15 +323,15 @@ export default function Home() {
       </section>
 
       {/* ━━━ Footer ━━━ */}
-      <footer className="py-10 border-t border-white/5">
+      <footer className="py-12 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <span className="font-display text-sm tracking-[0.2em] uppercase text-muted">
             Truman Motors
           </span>
-          <p className="text-[10px] text-muted/50 tracking-wider">
+          <p className="text-xs text-muted/50 tracking-wider">
             © {new Date().getFullYear()} Truman Motors. All rights reserved.
           </p>
-          <p className="text-[10px] text-muted/50 tracking-wider uppercase">
+          <p className="text-xs text-muted/50 tracking-wider uppercase">
             Performance Truck Upfitting
           </p>
         </div>

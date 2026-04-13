@@ -46,7 +46,7 @@ export default function ModelCard({
             <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent" />
             {/* Price badge */}
             <div className="absolute top-4 right-4 bg-background/80 backdrop-blur-sm px-3 py-1.5 border border-white/10">
-              <span className="text-[10px] tracking-[0.2em] uppercase text-gold">
+              <span className="text-xs tracking-[0.2em] uppercase text-gold">
                 From {price}
               </span>
             </div>
@@ -54,22 +54,22 @@ export default function ModelCard({
 
           {/* Content */}
           <div className="p-6 md:p-8">
-            <p className="text-[10px] tracking-[0.3em] uppercase text-gold/70 mb-2">
+            <p className="text-xs tracking-[0.25em] uppercase text-gold/70 mb-3">
               {tagline}
             </p>
-            <h3 className="font-display text-2xl md:text-3xl font-medium mb-3">
+            <h3 className="font-display text-2xl md:text-3xl font-medium mb-4">
               {name}
             </h3>
-            <p className="text-sm text-muted leading-relaxed mb-4">
+            <p className="text-sm md:text-base text-muted leading-relaxed mb-5">
               {description}
             </p>
             {highlight && (
-              <p className="text-[10px] tracking-[0.2em] uppercase text-cream/40 mb-6">
+              <p className="text-xs tracking-[0.2em] uppercase text-cream/40 mb-6">
                 {highlight}
               </p>
             )}
             <div className="flex items-center gap-3 text-cream/50 group-hover:text-gold transition-colors duration-500">
-              <span className="text-[10px] tracking-[0.2em] uppercase">
+              <span className="text-xs tracking-[0.2em] uppercase">
                 Explore
               </span>
               <div className="h-px w-8 bg-current group-hover:w-12 transition-all duration-500" />
