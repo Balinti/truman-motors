@@ -55,7 +55,7 @@ export default function ScrollVideo({
     imagesRef.current = images;
   }, [frameDir, frameCount, frameExt, framePad]);
 
-  // Draw frame on canvas
+  // Draw frame on canvas with "cover" behavior (crop to fill)
   const drawFrame = useCallback(
     (idx: number) => {
       const canvas = canvasRef.current;
@@ -65,9 +65,35 @@ export default function ScrollVideo({
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
 
-      canvas.width = img.naturalWidth;
-      canvas.height = img.naturalHeight;
-      ctx.drawImage(img, 0, 0);
+      // Match canvas to viewport size
+      const dpr = window.devicePixelRatio || 1;
+      const vw = canvas.clientWidth;
+      const vh = canvas.clientHeight;
+      canvas.width = vw * dpr;
+      canvas.height = vh * dpr;
+      ctx.scale(dpr, dpr);
+
+      // "object-cover" math: scale image to fill, then center-crop
+      const imgRatio = img.naturalWidth / img.naturalHeight;
+      const canvasRatio = vw / vh;
+
+      let drawW: number, drawH: number, drawX: number, drawY: number;
+
+      if (imgRatio > canvasRatio) {
+        // Image is wider than canvas — fit height, crop sides
+        drawH = vh;
+        drawW = vh * imgRatio;
+        drawX = (vw - drawW) / 2;
+        drawY = 0;
+      } else {
+        // Image is taller than canvas — fit width, crop top/bottom
+        drawW = vw;
+        drawH = vw / imgRatio;
+        drawX = 0;
+        drawY = (vh - drawH) / 2;
+      }
+
+      ctx.drawImage(img, drawX, drawY, drawW, drawH);
     },
     []
   );
@@ -81,12 +107,20 @@ export default function ScrollVideo({
     if (loaded) drawFrame(0);
   }, [loaded, drawFrame]);
 
+  // Redraw on resize
+  useEffect(() => {
+    if (!loaded) return;
+    const handleResize = () => drawFrame(Math.round(frameIndex.get()));
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [loaded, drawFrame, frameIndex]);
+
   return (
     <div ref={wrapRef} className="relative" style={{ height }}>
       <div className="sticky top-0 h-screen overflow-hidden">
         <canvas
           ref={canvasRef}
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full"
         />
         {/* Overlay gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
