@@ -32,7 +32,7 @@ export default function ShortyPage() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-[10px] tracking-[0.5em] uppercase text-gold mb-3"
+            className="text-xs tracking-[0.4em] uppercase text-gold mb-3"
           >
             Weekend Warrior
           </motion.p>
@@ -49,7 +49,7 @@ export default function ShortyPage() {
 
       {/* Description */}
       <section className="py-28 bg-background">
-        <div className="max-w-3xl mx-auto px-8 text-center">
+        <div className="max-w-3xl mx-auto px-10 text-center">
           <ScrollReveal>
             <p className="text-base md:text-lg text-muted leading-relaxed">
               2-door, short bed Ford F-450 on 44-inch tires, built for
@@ -64,9 +64,9 @@ export default function ShortyPage() {
       {/* Specs */}
       <section className="py-28 bg-charcoal">
         <div className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
-        <div className="max-w-2xl mx-auto px-8">
+        <div className="max-w-2xl mx-auto px-10">
           <ScrollReveal>
-            <p className="text-[10px] tracking-[0.4em] uppercase text-gold mb-4">
+            <p className="text-xs tracking-[0.3em] uppercase text-gold mb-4">
               Specifications
             </p>
             <hr className="hr-gold !mx-0 mb-12" />
@@ -74,11 +74,11 @@ export default function ShortyPage() {
           <div>
             {specs.map((spec, i) => (
               <ScrollReveal key={i} delay={i * 0.04}>
-                <div className="flex items-center justify-between py-5 border-b border-white/5">
-                  <span className="text-[11px] tracking-[0.15em] uppercase text-muted">
+                <div className="flex items-center justify-between py-5 border-b border-white/5 gap-4">
+                  <span className="text-xs tracking-[0.15em] uppercase text-muted shrink-0">
                     {spec.label}
                   </span>
-                  <span className="font-display text-lg font-medium">
+                  <span className="font-display text-lg font-medium text-right">
                     {spec.value}
                   </span>
                 </div>
@@ -90,9 +90,9 @@ export default function ShortyPage() {
 
       {/* Gallery */}
       <section className="py-28 bg-background">
-        <div className="max-w-6xl mx-auto px-8">
+        <div className="max-w-6xl mx-auto px-10">
           <ScrollReveal>
-            <p className="text-[10px] tracking-[0.4em] uppercase text-gold mb-4">
+            <p className="text-xs tracking-[0.3em] uppercase text-gold mb-4">
               Gallery
             </p>
           </ScrollReveal>
@@ -117,7 +117,7 @@ export default function ShortyPage() {
 
       {/* Contact */}
       <section className="py-28 bg-charcoal">
-        <div className="max-w-4xl mx-auto px-8 text-center">
+        <div className="max-w-4xl mx-auto px-10 text-center">
           <ScrollReveal>
             <h2 className="font-display text-3xl md:text-5xl font-medium mb-12">
               Interested in The Shorty?
@@ -131,9 +131,9 @@ export default function ShortyPage() {
       <div className="py-10 text-center border-t border-white/5">
         <Link
           href="/"
-          className="text-[10px] tracking-[0.2em] uppercase text-muted hover:text-gold transition-colors duration-500"
+          className="text-xs tracking-[0.2em] uppercase text-muted hover:text-gold transition-colors duration-500"
         >
-          ← Back to Home
+          &larr; Back to Home
         </Link>
       </div>
     </main>
