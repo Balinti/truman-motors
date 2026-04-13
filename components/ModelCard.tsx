@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { assetPath } from "@/lib/basePath";
+import TiltCard from "./TiltCard";
 
 interface ModelCardProps {
   name: string;
@@ -32,6 +33,7 @@ export default function ModelCard({
       transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
     >
       <Link href={href} className="group block relative">
+        <TiltCard>
         <div className="overflow-hidden bg-charcoal border border-white/5 group-hover:border-gold/20 transition-colors duration-700">
           {/* Image */}
           <div className="relative aspect-[16/10] overflow-hidden">
@@ -74,6 +76,7 @@ export default function ModelCard({
             </div>
           </div>
         </div>
+        </TiltCard>
       </Link>
     </motion.div>
   );
