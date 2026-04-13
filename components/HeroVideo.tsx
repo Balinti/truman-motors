@@ -21,7 +21,7 @@ export default function HeroVideo({ src, fallbackImage }: HeroVideoProps) {
   }, []);
 
   return (
-    <section className="relative w-full h-screen overflow-hidden">
+    <section className="relative w-full h-screen min-h-[600px] overflow-hidden">
       <video
         ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover"
