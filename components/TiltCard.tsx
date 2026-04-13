@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useCallback, ReactNode } from "react";
+import { useRef, useCallback, useEffect, useState, ReactNode } from "react";
 
 interface TiltCardProps {
   children: ReactNode;
@@ -15,9 +15,15 @@ export default function TiltCard({
 }: TiltCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const highlightRef = useRef<HTMLDivElement>(null);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0);
+  }, []);
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
+      if (isTouchDevice) return;
       const card = cardRef.current;
       if (!card) return;
 
@@ -39,10 +45,11 @@ export default function TiltCard({
         highlightRef.current.style.opacity = "1";
       }
     },
-    [maxTilt]
+    [maxTilt, isTouchDevice]
   );
 
   const handleMouseLeave = useCallback(() => {
+    if (isTouchDevice) return;
     const card = cardRef.current;
     if (!card) return;
     card.style.transform =
@@ -50,7 +57,12 @@ export default function TiltCard({
     if (highlightRef.current) {
       highlightRef.current.style.opacity = "0";
     }
-  }, []);
+  }, [isTouchDevice]);
+
+  // On touch devices, render children directly — no tilt wrapper
+  if (isTouchDevice) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <div
