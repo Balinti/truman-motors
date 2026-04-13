@@ -5,6 +5,7 @@ import { useRef } from "react";
 import HeroVideo from "@/components/HeroVideo";
 import ScrollReveal from "@/components/ScrollReveal";
 import ParallaxSection from "@/components/ParallaxSection";
+import ParallaxLayer from "@/components/ParallaxLayer";
 import AnimatedStats from "@/components/AnimatedStats";
 import ModelCard from "@/components/ModelCard";
 import ContactForm from "@/components/ContactForm";
@@ -63,6 +64,42 @@ function StaggerText({ text, className = "" }: { text: string; className?: strin
         </motion.span>
       ))}
     </span>
+  );
+}
+
+function ParallaxWatermark({ text, speed = 0.3 }: { text: string; speed?: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [80, -80]);
+  const x = useTransform(scrollYProgress, [0, 1], [-30 * speed, 30 * speed]);
+
+  return (
+    <div ref={ref} className="absolute inset-0 overflow-hidden pointer-events-none select-none">
+      <motion.div
+        style={{ y, x }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[30vw] font-black text-white/[0.015] whitespace-nowrap"
+      >
+        {text}
+      </motion.div>
+    </div>
+  );
+}
+
+function FloatingAccent({ className, speed = 0.4 }: { className: string; speed?: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [speed * 120, speed * -120]);
+
+  return (
+    <div ref={ref} className="absolute inset-0 pointer-events-none overflow-hidden">
+      <motion.div style={{ y }} className={className} />
+    </div>
   );
 }
 
@@ -145,70 +182,100 @@ export default function Home() {
 
       {/* ━━━ Brand Intro ━━━ */}
       <section id="about" className="relative py-40 md:py-56 overflow-hidden">
-        <div className="absolute top-0 right-0 w-px h-64 bg-gradient-to-b from-gold/20 to-transparent" />
-        <div className="absolute bottom-0 left-16 w-px h-48 bg-gradient-to-t from-gold/10 to-transparent" />
+        {/* Floating parallax accents */}
+        <FloatingAccent
+          speed={0.5}
+          className="absolute top-20 right-0 w-px h-64 bg-gradient-to-b from-gold/20 to-transparent"
+        />
+        <FloatingAccent
+          speed={0.3}
+          className="absolute bottom-10 left-16 w-px h-48 bg-gradient-to-t from-gold/10 to-transparent"
+        />
+        <FloatingAccent
+          speed={0.6}
+          className="absolute top-1/3 right-12 w-24 h-px bg-gradient-to-l from-gold/10 to-transparent"
+        />
 
         <div className="max-w-6xl mx-auto px-8">
           <div className="grid md:grid-cols-12 gap-16 md:gap-12 items-start">
-            {/* Left — label */}
+            {/* Left — label, moves slower */}
             <div className="md:col-span-3">
-              <ScrollReveal>
-                <p className="text-xs tracking-[0.3em] uppercase text-gold mb-4">
-                  Our Philosophy
-                </p>
-                <hr className="hr-gold !mx-0" />
-              </ScrollReveal>
+              <ParallaxLayer speed={0.15}>
+                <ScrollReveal>
+                  <p className="text-xs tracking-[0.3em] uppercase text-gold mb-4">
+                    Our Philosophy
+                  </p>
+                  <hr className="hr-gold !mx-0" />
+                </ScrollReveal>
+              </ParallaxLayer>
             </div>
 
-            {/* Right — big text */}
+            {/* Right — big text, moves faster for split-speed effect */}
             <div className="md:col-span-9">
-              <ScrollReveal delay={0.1}>
-                <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium leading-[1.1] mb-10">
-                  Built For
-                  <br />
-                  <span className="text-gradient">Anything.</span>
-                </h2>
-              </ScrollReveal>
-              <ScrollReveal delay={0.25}>
-                <p className="text-base md:text-lg text-muted max-w-xl leading-relaxed">
-                  Truman Motors upfits heavy-duty trucks into the most capable,
-                  versatile, and refined vehicles on or off the road — delivering
-                  superior performance for work, play, and everything in between.
-                </p>
-              </ScrollReveal>
+              <ParallaxLayer speed={-0.08}>
+                <ScrollReveal delay={0.1}>
+                  <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium leading-[1.1] mb-10">
+                    Built For
+                    <br />
+                    <span className="text-gradient">Anything.</span>
+                  </h2>
+                </ScrollReveal>
+              </ParallaxLayer>
+              <ParallaxLayer speed={-0.04}>
+                <ScrollReveal delay={0.25}>
+                  <p className="text-base md:text-lg text-muted max-w-xl leading-relaxed">
+                    Truman Motors upfits heavy-duty trucks into the most capable,
+                    versatile, and refined vehicles on or off the road — delivering
+                    superior performance for work, play, and everything in between.
+                  </p>
+                </ScrollReveal>
+              </ParallaxLayer>
             </div>
           </div>
         </div>
       </section>
 
       {/* ━━━ Stats ━━━ */}
-      <section className="relative py-28 md:py-40">
-        <div className="absolute inset-0 bg-charcoal" />
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
-        <div className="relative max-w-5xl mx-auto px-8">
+      <ParallaxSection
+        backgroundImage="/images/truck-shorty.jpg"
+        className="py-28 md:py-40"
+        speed={0.3}
+      >
+        <div className="max-w-5xl mx-auto px-8">
           <AnimatedStats stats={stats} />
         </div>
-      </section>
+      </ParallaxSection>
 
       {/* ━━━ Full-bleed quote break ━━━ */}
       <ParallaxSection
         backgroundImage="/images/truck-hero.jpg"
         className="py-56 md:py-72"
-        speed={0.4}
+        speed={0.5}
       >
         <div className="max-w-4xl mx-auto px-8 text-center">
-          <ScrollReveal delay={0.1}>
-            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-medium italic leading-tight text-cream">
-              "No compromises.<br />No shortcuts.<br />
-              Just the best."
-            </h2>
-          </ScrollReveal>
+          <ParallaxLayer speed={-0.15}>
+            <ScrollReveal delay={0.1}>
+              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-medium italic leading-tight text-cream">
+                &ldquo;No compromises.<br />No shortcuts.<br />
+                Just the best.&rdquo;
+              </h2>
+            </ScrollReveal>
+          </ParallaxLayer>
         </div>
       </ParallaxSection>
 
       {/* ━━━ Hologram Showcase ━━━ */}
       <section className="relative py-36 md:py-48 bg-background overflow-hidden">
+        {/* Floating gold lines */}
+        <FloatingAccent
+          speed={0.4}
+          className="absolute top-16 left-8 w-32 h-px bg-gradient-to-r from-gold/15 to-transparent"
+        />
+        <FloatingAccent
+          speed={0.6}
+          className="absolute bottom-24 right-12 w-20 h-px bg-gradient-to-l from-gold/10 to-transparent"
+        />
+
         <div className="max-w-6xl mx-auto px-8">
           <div className="text-center mb-16">
             <ScrollReveal>
@@ -237,7 +304,12 @@ export default function Home() {
       </section>
 
       {/* ━━━ Models ━━━ */}
-      <section id="models" className="relative py-36 md:py-52 bg-background">
+      <section id="models" className="relative py-36 md:py-52 bg-background overflow-hidden">
+        <FloatingAccent
+          speed={0.35}
+          className="absolute top-32 left-0 w-px h-40 bg-gradient-to-b from-gold/15 to-transparent"
+        />
+
         <div className="max-w-6xl mx-auto px-8">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-20 gap-6">
             <div>
@@ -246,11 +318,13 @@ export default function Home() {
                   Our Models
                 </p>
               </ScrollReveal>
-              <ScrollReveal delay={0.1}>
-                <h2 className="font-display text-3xl md:text-4xl font-medium">
-                  Choose Your Build
-                </h2>
-              </ScrollReveal>
+              <ParallaxLayer speed={-0.06}>
+                <ScrollReveal delay={0.1}>
+                  <h2 className="font-display text-3xl md:text-4xl font-medium">
+                    Choose Your Build
+                  </h2>
+                </ScrollReveal>
+              </ParallaxLayer>
             </div>
             <ScrollReveal delay={0.2}>
               <p className="text-sm md:text-base text-muted max-w-xs">
@@ -283,9 +357,18 @@ export default function Home() {
 
       {/* ━━━ Process / 4 Pillars ━━━ */}
       <section id="process" className="relative py-36 md:py-52 bg-charcoal overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[30vw] font-black text-white/[0.015] pointer-events-none select-none whitespace-nowrap">
-          TRUMAN
-        </div>
+        {/* Parallax watermark that drifts on scroll */}
+        <ParallaxWatermark text="TRUMAN" speed={0.5} />
+
+        {/* Floating accent lines */}
+        <FloatingAccent
+          speed={0.5}
+          className="absolute top-24 right-8 w-16 h-px bg-gradient-to-l from-gold/10 to-transparent"
+        />
+        <FloatingAccent
+          speed={0.35}
+          className="absolute bottom-32 left-4 w-px h-32 bg-gradient-to-t from-gold/8 to-transparent"
+        />
 
         <div className="relative max-w-6xl mx-auto px-8">
           <div className="mb-24">
@@ -295,11 +378,13 @@ export default function Home() {
               </p>
               <hr className="hr-gold !mx-0 mb-10" />
             </ScrollReveal>
-            <ScrollReveal delay={0.1}>
-              <h2 className="font-display text-3xl md:text-4xl font-medium max-w-md">
-                The Truman Standard
-              </h2>
-            </ScrollReveal>
+            <ParallaxLayer speed={-0.1}>
+              <ScrollReveal delay={0.1}>
+                <h2 className="font-display text-3xl md:text-4xl font-medium max-w-md">
+                  The Truman Standard
+                </h2>
+              </ScrollReveal>
+            </ParallaxLayer>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
@@ -326,9 +411,34 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ━━━ Pre-contact parallax break ━━━ */}
+      <ParallaxSection
+        backgroundImage="/images/truck-signature.jpg"
+        className="py-40 md:py-52"
+        speed={0.4}
+      >
+        <div className="max-w-3xl mx-auto px-8 text-center">
+          <ParallaxLayer speed={-0.12}>
+            <ScrollReveal>
+              <p className="text-xs tracking-[0.3em] uppercase text-gold mb-6">
+                Ready to Build Yours?
+              </p>
+              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-cream">
+                Your Truck.<br />Your Way.
+              </h2>
+            </ScrollReveal>
+          </ParallaxLayer>
+        </div>
+      </ParallaxSection>
+
       {/* ━━━ Contact ━━━ */}
-      <section id="contact" className="relative py-40 md:py-56 bg-background">
+      <section id="contact" className="relative py-40 md:py-56 bg-background overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
+
+        <FloatingAccent
+          speed={0.3}
+          className="absolute top-20 right-16 w-px h-24 bg-gradient-to-b from-gold/10 to-transparent"
+        />
 
         <div className="max-w-4xl mx-auto px-8">
           <div className="text-center mb-20">
@@ -337,11 +447,13 @@ export default function Home() {
                 Get In Touch
               </p>
             </ScrollReveal>
-            <ScrollReveal delay={0.1}>
-              <h2 className="font-display text-4xl md:text-5xl font-medium">
-                Let's Talk
-              </h2>
-            </ScrollReveal>
+            <ParallaxLayer speed={-0.08}>
+              <ScrollReveal delay={0.1}>
+                <h2 className="font-display text-4xl md:text-5xl font-medium">
+                  Let&apos;s Talk
+                </h2>
+              </ScrollReveal>
+            </ParallaxLayer>
             <ScrollReveal delay={0.2}>
               <p className="text-muted mt-6 text-base max-w-md mx-auto">
                 Speak with someone from our team about your next build.
@@ -359,7 +471,7 @@ export default function Home() {
             Truman Motors
           </span>
           <p className="text-xs text-muted/50 tracking-wider">
-            © {new Date().getFullYear()} Truman Motors. All rights reserved.
+            &copy; {new Date().getFullYear()} Truman Motors. All rights reserved.
           </p>
           <p className="text-xs text-muted/50 tracking-wider uppercase">
             Performance Truck Upfitting
