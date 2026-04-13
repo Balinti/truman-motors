@@ -476,7 +476,7 @@ export default function Home() {
               </ScrollReveal>
             </ParallaxLayer>
             <ScrollReveal delay={0.2}>
-              <p className="text-muted mt-6 text-base max-w-md mx-auto">
+              <p className="text-cream/60 mt-6 text-base max-w-md mx-auto">
                 Speak with someone from our team about your next build.
               </p>
             </ScrollReveal>
