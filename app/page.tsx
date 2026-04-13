@@ -10,6 +10,7 @@ import AnimatedStats from "@/components/AnimatedStats";
 import ModelCard from "@/components/ModelCard";
 import ContactForm from "@/components/ContactForm";
 import HologramCard from "@/components/HologramCard";
+import ScrollVideo from "@/components/ScrollVideo";
 
 const stats = [
   { value: "44", suffix: '"', label: "Inch Tires" },
@@ -179,6 +180,23 @@ export default function Home() {
           </motion.div>
         </div>
       </motion.section>
+
+      {/* ━━━ Scroll Build Sequence ━━━ */}
+      <ScrollVideo
+        frameDir="/frames"
+        frameCount={121}
+        frameExt=".jpg"
+        height="400vh"
+      >
+        <div className="text-center px-6">
+          <p className="text-xs tracking-[0.3em] uppercase text-gold mb-4">
+            The Build Process
+          </p>
+          <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-medium leading-tight">
+            From Frame<br />To Finish
+          </h2>
+        </div>
+      </ScrollVideo>
 
       {/* ━━━ Brand Intro ━━━ */}
       <section id="about" className="relative py-40 md:py-56 overflow-hidden">
