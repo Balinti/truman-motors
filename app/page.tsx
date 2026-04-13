@@ -8,6 +8,7 @@ import ParallaxSection from "@/components/ParallaxSection";
 import AnimatedStats from "@/components/AnimatedStats";
 import ModelCard from "@/components/ModelCard";
 import ContactForm from "@/components/ContactForm";
+import HologramCard from "@/components/HologramCard";
 
 const stats = [
   { value: "44", suffix: '"', label: "Inch Tires" },
@@ -205,6 +206,35 @@ export default function Home() {
           </ScrollReveal>
         </div>
       </ParallaxSection>
+
+      {/* ━━━ Hologram Showcase ━━━ */}
+      <section className="relative py-36 md:py-48 bg-background overflow-hidden">
+        <div className="max-w-6xl mx-auto px-8">
+          <div className="text-center mb-16">
+            <ScrollReveal>
+              <p className="text-xs tracking-[0.3em] uppercase text-gold mb-4">
+                Precision Engineering
+              </p>
+            </ScrollReveal>
+            <ScrollReveal delay={0.1}>
+              <h2 className="font-display text-3xl md:text-4xl font-medium">
+                Every Detail Matters
+              </h2>
+            </ScrollReveal>
+          </div>
+          <ScrollReveal delay={0.2}>
+            <div className="flex justify-center">
+              <HologramCard
+                backgroundSrc="/images/hologram/background.png"
+                characterSrc="/images/truck-hero.jpg"
+                foregroundSrc="/images/hologram/foreground.png"
+                width={400}
+                height={540}
+              />
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
 
       {/* ━━━ Models ━━━ */}
       <section id="models" className="relative py-36 md:py-52 bg-background">
