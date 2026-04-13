@@ -27,11 +27,11 @@ export default function ContactForm() {
 
   return (
     <ScrollReveal>
-      <form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-8">
+      <form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-8 text-left">
         <div>
           <label
             htmlFor="name"
-            className="block text-[10px] tracking-[0.3em] uppercase text-muted mb-3"
+            className="block text-xs tracking-[0.3em] uppercase text-muted mb-3"
           >
             Name
           </label>
@@ -46,7 +46,7 @@ export default function ContactForm() {
         <div>
           <label
             htmlFor="email"
-            className="block text-[10px] tracking-[0.3em] uppercase text-muted mb-3"
+            className="block text-xs tracking-[0.3em] uppercase text-muted mb-3"
           >
             Email
           </label>
@@ -61,7 +61,7 @@ export default function ContactForm() {
         <div>
           <label
             htmlFor="message"
-            className="block text-[10px] tracking-[0.3em] uppercase text-muted mb-3"
+            className="block text-xs tracking-[0.3em] uppercase text-muted mb-3"
           >
             Message
           </label>
@@ -73,15 +73,17 @@ export default function ContactForm() {
             placeholder="Tell us about your project"
           />
         </div>
-        <button
-          type="submit"
-          className="group flex items-center gap-4 mt-4"
-        >
-          <span className="text-[11px] tracking-[0.3em] uppercase text-cream group-hover:text-gold transition-colors duration-500">
-            Submit Inquiry
-          </span>
-          <div className="h-px w-12 bg-gold/40 group-hover:w-20 group-hover:bg-gold transition-all duration-500" />
-        </button>
+        <div className="flex justify-center pt-4">
+          <button
+            type="submit"
+            className="group flex items-center gap-4"
+          >
+            <span className="text-xs tracking-[0.3em] uppercase text-cream group-hover:text-gold transition-colors duration-500">
+              Submit Inquiry
+            </span>
+            <div className="h-px w-12 bg-gold/40 group-hover:w-20 group-hover:bg-gold transition-all duration-500" />
+          </button>
+        </div>
       </form>
     </ScrollReveal>
   );

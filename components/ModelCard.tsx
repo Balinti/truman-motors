@@ -14,6 +14,7 @@ interface ModelCardProps {
   href: string;
   price: string;
   highlight?: string;
+  imagePosition?: string;
 }
 
 export default function ModelCard({
@@ -24,6 +25,7 @@ export default function ModelCard({
   href,
   price,
   highlight,
+  imagePosition = "center",
 }: ModelCardProps) {
   return (
     <motion.div
@@ -42,6 +44,7 @@ export default function ModelCard({
               alt={name}
               fill
               className="object-cover transition-all duration-1000 group-hover:scale-105"
+              style={{ objectPosition: imagePosition }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent" />
             {/* Price badge */}

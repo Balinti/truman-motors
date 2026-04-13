@@ -368,6 +368,7 @@ export default function Home() {
               href="/signature"
               price="$175K"
               highlight="4-Door · Full Size"
+              imagePosition="left center"
             />
           </div>
         </div>
@@ -408,9 +409,11 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
             {pillars.map((pillar, i) => (
               <ScrollReveal key={i} delay={i * 0.08}>
-                <div className="border border-white/8 rounded-sm p-10 md:p-12 group hover:border-gold/25 hover:bg-white/[0.02] transition-all duration-700 h-full">
+                <div className="relative border border-white/10 rounded-sm p-10 md:p-12 group hover:border-gold/30 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-700 h-full">
+                  {/* Top accent line */}
+                  <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-gold/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                   <div className="flex items-start gap-6">
-                    <span className="font-display text-3xl md:text-4xl text-gold/25 group-hover:text-gold/50 transition-colors duration-700 leading-none shrink-0">
+                    <span className="font-display text-3xl md:text-4xl text-gold/30 group-hover:text-gold/60 transition-colors duration-700 leading-none shrink-0">
                       {pillar.number}
                     </span>
                     <div>
@@ -431,8 +434,8 @@ export default function Home() {
 
       {/* ━━━ Pre-contact parallax break ━━━ */}
       <ParallaxSection
-        backgroundImage="/images/truck-signature.jpg"
-        className="py-40 md:py-52"
+        backgroundImage="/images/truck-hero.jpg"
+        className="py-48 md:py-64"
         speed={0.4}
       >
         <div className="max-w-3xl mx-auto px-8 text-center">
@@ -483,7 +486,7 @@ export default function Home() {
       </section>
 
       {/* ━━━ Footer ━━━ */}
-      <footer className="py-12 border-t border-white/5">
+      <footer className="py-16 pb-20 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <span className="font-display text-sm tracking-[0.2em] uppercase text-muted">
             Truman Motors
