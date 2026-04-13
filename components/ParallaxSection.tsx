@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ReactNode } from "react";
+import { assetPath } from "@/lib/basePath";
 
 interface ParallaxSectionProps {
   children: ReactNode;
@@ -36,7 +37,7 @@ export default function ParallaxSection({
         >
           <div
             className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${backgroundImage})` }}
+            style={{ backgroundImage: `url(${assetPath(backgroundImage)})` }}
           />
           <div className="absolute inset-0 bg-black/60" />
         </motion.div>

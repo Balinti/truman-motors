@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
+import { assetPath } from "@/lib/basePath";
 
 interface HeroVideoProps {
   src: string;
@@ -24,8 +25,8 @@ export default function HeroVideo({ src, fallbackImage }: HeroVideoProps) {
       <video
         ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover"
-        src={src}
-        poster={fallbackImage}
+        src={assetPath(src)}
+        poster={fallbackImage ? assetPath(fallbackImage) : undefined}
         autoPlay
         loop
         muted
